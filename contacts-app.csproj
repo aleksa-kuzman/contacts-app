@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Common\Migrations\" />
     <Folder Include="Users\AuthorizeUser\MappingConfiguration\" />
   </ItemGroup>
 

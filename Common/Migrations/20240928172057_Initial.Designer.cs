@@ -12,7 +12,7 @@ using contacts_app.Common;
 namespace contacts_app.Common.Migrations
 {
     [DbContext(typeof(ContactsDbContext))]
-    [Migration("20240928140550_Initial")]
+    [Migration("20240928172057_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace contacts_app.Common.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("Contacts")
+                .HasDefaultSchema("contacts")
                 .HasAnnotation("ProductVersion", "8.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
@@ -54,9 +54,9 @@ namespace contacts_app.Common.Migrations
                         .HasColumnName("password");
 
                     b.HasKey("Id")
-                        .HasName("pk_user");
+                        .HasName("pk_users");
 
-                    b.ToTable("user", "Contacts");
+                    b.ToTable("users", "contacts");
                 });
 #pragma warning restore 612, 618
         }

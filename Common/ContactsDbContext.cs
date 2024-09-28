@@ -12,19 +12,14 @@ namespace contacts_app.Common
         {
         }
 
-        private const string Schema = "Contacts";
+        private DbSet<User> Users { get; set; }
+
+        private const string Schema = "contacts";
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema(Schema);
             modelBuilder.ApplyConfiguration(new UserConfiguration());
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder
-            .UseNpgsql("Connection")
-            .UseSnakeCaseNamingConvention();
         }
     }
 }

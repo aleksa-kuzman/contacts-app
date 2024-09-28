@@ -7,7 +7,7 @@
         environment: 
             ASPNETCORE_ENVIRONMENT: Development
         ports: 
-            - "32768:8080"
+            - "8080:8080"
 
     postgresql: 
         image: postgres

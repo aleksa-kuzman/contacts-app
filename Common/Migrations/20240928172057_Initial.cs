@@ -12,11 +12,11 @@ namespace contacts_app.Common.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "Contacts");
+                name: "contacts");
 
             migrationBuilder.CreateTable(
-                name: "user",
-                schema: "Contacts",
+                name: "users",
+                schema: "contacts",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "(gen_random_uuid())"),
@@ -27,7 +27,7 @@ namespace contacts_app.Common.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_user", x => x.id);
+                    table.PrimaryKey("pk_users", x => x.id);
                 });
         }
 
@@ -35,8 +35,8 @@ namespace contacts_app.Common.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "user",
-                schema: "Contacts");
+                name: "users",
+                schema: "contacts");
         }
     }
 }
