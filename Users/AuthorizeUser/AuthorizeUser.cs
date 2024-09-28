@@ -1,17 +1,19 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace contacts_app.Users.AuthorizeUser
 {
     public static class AuthorizeUser
     {
         internal static void MapAuthorizeUserEndpoint(this IEndpointRouteBuilder app) =>
-            app.MapPost("Authorize",
-                async (
-                    RequestAuthorizeUserDto authorizeDto,
-                    JwtSecurityTokenHandler tokenHandler
+            app.MapPost("api/User/Authorize",
+                 (
+                    UserService userService,
+                   [FromBody] RequestAuthorizeUserDto authorizeDto
+
                     ) =>
                 {
-                    return Results.Ok();
+                    var response = userService.AuthorizeUser(authorizeDto);
+                    return Results.Ok(response);
                 }
                 );
     }

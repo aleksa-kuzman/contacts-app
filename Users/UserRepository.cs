@@ -1,4 +1,5 @@
 ﻿using contacts_app.Common;
+using contacts_app.Users.AuthorizeUser.Model;
 
 namespace contacts_app.Users
 {
@@ -9,6 +10,15 @@ namespace contacts_app.Users
         public UserRepository(ContactsDbContext context)
         {
             _context = context;
+        }
+
+        public User? GetUserByEmail(string email)
+        {
+            var user = _context.Users
+                 .Where(m => m.EmailConfirmed == true && m.Email == email)
+                 .FirstOrDefault();
+
+            return user;
         }
     }
 }
