@@ -1,5 +1,7 @@
 using contacts_app.Common;
 using contacts_app.Users;
+using contacts_app.Users.AuthorizeUser.Model;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -13,6 +15,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient(typeof(JWTSecurityTokenHelper));
 builder.Services.AddTransient(typeof(UnitOfWork));
 builder.Services.AddTransient(typeof(UserService));
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddScoped<IPasswordHasher<User>, BcryptHasher<User>>();
 
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
@@ -53,3 +57,6 @@ app.MapUsers();
 //app.UseHttpsRedirection();
 
 app.Run();
+
+public partial class Program
+{ }
