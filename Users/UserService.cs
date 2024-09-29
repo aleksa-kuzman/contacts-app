@@ -2,7 +2,6 @@
 using contacts_app.Users.AuthorizeUser;
 using contacts_app.Users.Model;
 using FluentValidation;
-using Mapster;
 using Microsoft.AspNetCore.Identity;
 
 namespace contacts_app.Users
@@ -49,7 +48,9 @@ namespace contacts_app.Users
             }
 
             var token = _jwtHelper.GenerateJwtToken(userToAuthenticate.Id.ToString());
-            var userDto = userToAuthenticate.Adapt<ResponseAuthorizeUserDto>();
+
+            var userDto = new ResponseAuthorizeUserDto(userToAuthenticate.Email, token);
+
             return userDto;
         }
     }

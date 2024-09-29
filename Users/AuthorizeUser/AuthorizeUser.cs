@@ -5,7 +5,7 @@ namespace contacts_app.Users.AuthorizeUser
     public static class AuthorizeUser
     {
         internal static void MapAuthorizeUserEndpoint(this IEndpointRouteBuilder app) =>
-            app.MapPost("api/User/Authorize",
+            app.MapPost("api/user/authorize",
                  (
                     UserService userService,
 

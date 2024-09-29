@@ -1,11 +1,16 @@
 using contacts_app.Common;
+using contacts_app.Contacts;
 using contacts_app.Users;
 using contacts_app.Users.AuthorizeUser;
 using contacts_app.Users.Model;
 using FluentValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,13 +22,41 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient(typeof(JWTSecurityTokenHelper));
 builder.Services.AddTransient(typeof(UnitOfWork));
 builder.Services.AddTransient(typeof(UserService));
+builder.Services.AddTransient(typeof(ContactService));
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 
 builder.Services.AddScoped<IPasswordHasher<User>, BcryptHasher<User>>();
-
 builder.Services.Configure<AppConfiguration>(builder.Configuration.GetSection(AppConfiguration.configName));
+
+var key = builder.Configuration.GetValue<string>("App:Key");
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key!)),
+        ClockSkew = TimeSpan.Zero,
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.DefaultPolicy = new AuthorizationPolicyBuilder()
+    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+    .RequireAuthenticatedUser()
+    .Build();
+});
 
 ///Validators
 builder.Services.AddScoped<IValidator<RequestAuthorizeUserDto>, RequestAuthorizeUserDtoValidator>();
@@ -38,6 +71,9 @@ options.UseNpgsql(configuration.GetConnectionString("Connection"))
 .UseSnakeCaseNamingConvention());
 
 var app = builder.Build();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 // Configure the HTTP request pipeline.
 
@@ -64,6 +100,7 @@ if (app.Environment.IsDevelopment() || app.Environment.EnvironmentName == "Local
 }
 
 app.MapUsers();
+app.MapContacts();
 app.UseExceptionHandler();
 //app.UseHttpsRedirection();
 
