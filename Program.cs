@@ -1,7 +1,7 @@
 using contacts_app.Common;
 using contacts_app.Users;
 using contacts_app.Users.AuthorizeUser;
-using contacts_app.Users.AuthorizeUser.Model;
+using contacts_app.Users.Model;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

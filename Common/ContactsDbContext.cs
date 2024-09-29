@@ -1,4 +1,5 @@
-﻿using contacts_app.Users.AuthorizeUser.Model;
+﻿using contacts_app.Contacts.Model;
+using contacts_app.Users.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace contacts_app.Common
@@ -13,6 +14,7 @@ namespace contacts_app.Common
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
 
         private const string Schema = "contacts";
 

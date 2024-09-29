@@ -1,4 +1,5 @@
-﻿using contacts_app.Users;
+﻿using contacts_app.Contacts;
+using contacts_app.Users;
 
 namespace contacts_app.Common
 {
@@ -7,10 +8,23 @@ namespace contacts_app.Common
         private ContactsDbContext _context;
 
         private UserRepository _userRepository;
+        private ContactsRepository _contactRepository;
 
         public UnitOfWork(ContactsDbContext context)
         {
             _context = context;
+        }
+
+        public ContactsRepository ContactsRepository
+        {
+            get
+            {
+                if (_contactRepository == null)
+                {
+                    _contactRepository = new ContactsRepository(_context);
+                }
+                return _contactRepository;
+            }
         }
 
         public UserRepository UserRepository

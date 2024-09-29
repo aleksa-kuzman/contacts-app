@@ -1,4 +1,4 @@
-﻿namespace contacts_app.Users.AuthorizeUser.Model
+﻿namespace contacts_app.Users.Model
 {
     public class User
     {

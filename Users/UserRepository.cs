@@ -1,5 +1,5 @@
 ﻿using contacts_app.Common;
-using contacts_app.Users.AuthorizeUser.Model;
+using contacts_app.Users.Model;
 
 namespace contacts_app.Users
 {
