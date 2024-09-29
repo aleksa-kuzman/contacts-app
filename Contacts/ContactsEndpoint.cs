@@ -1,4 +1,5 @@
 ﻿using contacts_app.Contacts.AddContact;
+using contacts_app.Contacts.DeleteContact;
 using contacts_app.Contacts.GetContacts;
 using contacts_app.Contacts.UpdateContact;
 
@@ -11,6 +12,7 @@ namespace contacts_app.Contacts
             app.MapGetContactsEndpoint();
             app.MapAddContactEndpoint();
             app.MapUpdateContactEndpoint();
+            app.MapDeleteContactEndpoint();
         }
     }
 }

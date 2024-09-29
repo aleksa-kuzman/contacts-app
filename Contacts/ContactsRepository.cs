@@ -33,5 +33,18 @@ namespace contacts_app.Contacts
 
             return contact;
         }
+
+        internal Contact DeleteContact(Guid id)
+        {
+            var contact = GetContactById(id);
+            if (contact == null)
+            {
+                throw new Exception("Exception");
+            }
+
+            _context.Contacts.Remove(contact);
+
+            return contact;
+        }
     }
 }

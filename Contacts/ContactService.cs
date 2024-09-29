@@ -1,5 +1,6 @@
 ﻿using contacts_app.Common;
 using contacts_app.Contacts.AddContact.Dto;
+using contacts_app.Contacts.DeleteContact.Dto;
 using contacts_app.Contacts.GetContacts.Dto;
 using contacts_app.Contacts.Model;
 using contacts_app.Contacts.UpdateContact.Dto;
@@ -68,6 +69,17 @@ namespace contacts_app.Contacts
             var response = contact.Adapt<ResponseUpdateContactDto>();
 
             return response;
+        }
+
+        public DeleteContactDto DeleteContact(Guid id)
+        {
+            Contact contact = _uow.ContactsRepository.DeleteContact(id);
+
+            var contactResponse = contact.Adapt<DeleteContactDto>();
+
+            _uow.Save();
+
+            return contactResponse;
         }
     }
 }
