@@ -8,6 +8,7 @@ namespace contacts_app.Users.AuthorizeUser
             app.MapPost("api/User/Authorize",
                  (
                     UserService userService,
+
                    [FromBody] RequestAuthorizeUserDto authorizeDto
 
                     ) =>

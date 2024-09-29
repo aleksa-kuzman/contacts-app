@@ -1,6 +1,8 @@
 using contacts_app.Common;
 using contacts_app.Users;
+using contacts_app.Users.AuthorizeUser;
 using contacts_app.Users.AuthorizeUser.Model;
+using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -17,6 +19,9 @@ builder.Services.AddTransient(typeof(UnitOfWork));
 builder.Services.AddTransient(typeof(UserService));
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddScoped<IPasswordHasher<User>, BcryptHasher<User>>();
+
+///Validators
+builder.Services.AddScoped<IValidator<RequestAuthorizeUserDto>, RequestAuthorizeUserDtoValidator>();
 
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
