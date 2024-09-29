@@ -17,8 +17,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient(typeof(JWTSecurityTokenHelper));
 builder.Services.AddTransient(typeof(UnitOfWork));
 builder.Services.AddTransient(typeof(UserService));
+
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 builder.Services.AddScoped<IPasswordHasher<User>, BcryptHasher<User>>();
+
+builder.Services.Configure<AppConfiguration>(builder.Configuration.GetSection(AppConfiguration.configName));
 
 ///Validators
 builder.Services.AddScoped<IValidator<RequestAuthorizeUserDto>, RequestAuthorizeUserDtoValidator>();
@@ -59,6 +64,7 @@ if (app.Environment.IsDevelopment() || app.Environment.EnvironmentName == "Local
 }
 
 app.MapUsers();
+app.UseExceptionHandler();
 //app.UseHttpsRedirection();
 
 app.Run();

@@ -1,4 +1,4 @@
 ﻿namespace contacts_app.Users.AuthorizeUser
 {
-    public record ResponseAuthorizeUserDto();
+    public record ResponseAuthorizeUserDto(string email);
 }
