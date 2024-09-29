@@ -2,6 +2,7 @@
 using contacts_app.Contacts.AddContact.Dto;
 using contacts_app.Contacts.GetContacts.Dto;
 using contacts_app.Contacts.Model;
+using contacts_app.Contacts.UpdateContact.Dto;
 using FluentValidation;
 using Mapster;
 
@@ -50,6 +51,23 @@ namespace contacts_app.Contacts
             _uow.Save();
 
             return insertedContact.Adapt<GetContactsDto>();
+        }
+
+        public ResponseUpdateContactDto UpdateContact(RequestUpdateContactDto dto, Guid id)
+        {
+            var contact = _uow.ContactsRepository.GetContactById(id);
+            if (contact == null)
+            {
+                throw new Exception();
+            }
+            contact.PhoneNumber = dto.PhoneNumber;
+            contact.Name = dto.Name;
+
+            _uow.Save();
+
+            var response = contact.Adapt<ResponseUpdateContactDto>();
+
+            return response;
         }
     }
 }

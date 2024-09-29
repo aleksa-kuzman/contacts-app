@@ -24,5 +24,14 @@ namespace contacts_app.Contacts
 
             return contactEntity.Entity;
         }
+
+        internal Contact GetContactById(Guid id)
+        {
+            var contact = _context.Contacts
+                .Where(m => m.Id == id)
+                .FirstOrDefault();
+
+            return contact;
+        }
     }
 }
