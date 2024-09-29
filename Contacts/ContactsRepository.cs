@@ -17,5 +17,12 @@ namespace contacts_app.Contacts
             var contacts = _context.Contacts.ToList();
             return contacts;
         }
+
+        public Contact AddContact(Contact contact)
+        {
+            var contactEntity = _context.Contacts.Add(contact);
+
+            return contactEntity.Entity;
+        }
     }
 }

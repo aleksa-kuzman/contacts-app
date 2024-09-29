@@ -1,4 +1,5 @@
-﻿using contacts_app.Contacts.GetContacts;
+﻿using contacts_app.Contacts.AddContact;
+using contacts_app.Contacts.GetContacts;
 
 namespace contacts_app.Contacts
 {
@@ -7,6 +8,7 @@ namespace contacts_app.Contacts
         public static void MapContacts(this IEndpointRouteBuilder app)
         {
             app.MapGetContactsEndpoint();
+            app.MapAddContactEndpoint();
         }
     }
 }

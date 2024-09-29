@@ -38,5 +38,15 @@ namespace contacts_app.Common
                 return _userRepository;
             }
         }
+
+        public virtual void Save()
+        {
+            _context.SaveChanges();
+        }
+
+        public virtual void SaveAsync()
+        {
+            _context.SaveChangesAsync();
+        }
     }
 }

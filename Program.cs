@@ -1,5 +1,7 @@
 using contacts_app.Common;
 using contacts_app.Contacts;
+using contacts_app.Contacts.AddContact;
+using contacts_app.Contacts.AddContact.Dto;
 using contacts_app.Users;
 using contacts_app.Users.AuthorizeUser;
 using contacts_app.Users.Model;
@@ -60,6 +62,7 @@ builder.Services.AddAuthorization(options =>
 
 ///Validators
 builder.Services.AddScoped<IValidator<RequestAuthorizeUserDto>, RequestAuthorizeUserDtoValidator>();
+builder.Services.AddScoped<IValidator<RequestAddContactDto>, RequestAddContactDtoValidator>();
 
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
