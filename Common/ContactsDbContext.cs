@@ -22,6 +22,7 @@ namespace contacts_app.Common
         {
             modelBuilder.HasDefaultSchema(Schema);
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new ContactConfiguration());
         }
     }
 }

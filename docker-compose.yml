@@ -3,6 +3,9 @@
         build: 
             context: .
             dockerfile: Dockerfile
+        depends_on: 
+            postgresql:
+                condition: service_healthy
        
         environment: 
             ASPNETCORE_ENVIRONMENT: Development
