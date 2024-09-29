@@ -10,7 +10,8 @@ namespace contacts_app.Contacts.GetContacts
 
                 ) =>
             {
-                return Results.Ok();
+                var result = contactService.GetAllContacts();
+                return Results.Ok(result);
             }).RequireAuthorization()
             .WithOpenApi(operation => new(operation)
             {
