@@ -15,8 +15,8 @@ namespace contacts_app.Users
         public User? GetUserByEmail(string email)
         {
             var user = _context.Users
-                 .Where(m => m.EmailConfirmed == true && m.Email == email)
-                 .FirstOrDefault();
+                .Where(m => m.EmailConfirmed && m.Email == email)
+                .FirstOrDefault();
 
             return user;
         }

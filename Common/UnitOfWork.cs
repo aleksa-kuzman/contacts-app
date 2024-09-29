@@ -8,6 +8,11 @@ namespace contacts_app.Common
 
         private UserRepository _userRepository;
 
+        public UnitOfWork(ContactsDbContext context)
+        {
+            _context = context;
+        }
+
         public UserRepository UserRepository
         {
             get

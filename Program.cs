@@ -35,25 +35,25 @@ options.UseNpgsql(configuration.GetConnectionString("Connection"))
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+using (var scope = app.Services.CreateScope())
+{
+    try
+    {
+        Log.Logger.Information("Trying to migrate database");
+
+        var db = scope.ServiceProvider.GetRequiredService<ContactsDbContext>();
+        db.Database.Migrate();
+        Log.Logger.Information("Successfully migrated database");
+    }
+    catch (Exception ex)
+    {
+        Log.Logger.Error("An error occured while migrating database", ex.Message);
+        throw;
+    }
+}
 if (app.Environment.IsDevelopment() || app.Environment.EnvironmentName == "Local")
 {
-    using (var scope = app.Services.CreateScope())
-    {
-        try
-        {
-            Log.Logger.Information("Trying to migrate database");
-
-            var db = scope.ServiceProvider.GetRequiredService<ContactsDbContext>();
-            db.Database.Migrate();
-            Log.Logger.Information("Successfully migrated database");
-        }
-        catch (Exception ex)
-        {
-            Log.Logger.Error("An error occured while migrating database", ex.Message);
-            throw;
-        }
-    }
-
     app.UseSwagger();
     app.UseSwaggerUI();
 }

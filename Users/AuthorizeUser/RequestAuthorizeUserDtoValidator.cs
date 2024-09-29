@@ -10,11 +10,6 @@ namespace contacts_app.Users.AuthorizeUser
                 .NotEmpty()
                 .EmailAddress()
                 .WithMessage("Invalid email format");
-
-            RuleFor(m => m.password)
-                .NotEmpty()
-                .Matches("^(?=.*\\d)(?=.*[a-zA-Z])(?=.*[A-Z]).{12,}$")
-                .WithMessage("Invalid password format");
         }
     }
 }
