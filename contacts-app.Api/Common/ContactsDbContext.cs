@@ -1,8 +1,8 @@
-﻿using contacts_app.Contacts.Model;
-using contacts_app.Users.Model;
+﻿using contacts_app.Api.Contacts.Model;
+using contacts_app.Api.Users.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace contacts_app.Common
+namespace contacts_app.Api.Common
 {
     public class ContactsDbContext : DbContext
     {

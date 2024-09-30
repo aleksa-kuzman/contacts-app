@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace contacts_app.Common.Migrations
+namespace contacts_app.Api.Common.Migrations
 {
     /// <inheritdoc />
     public partial class contactsusersconnection : Migration

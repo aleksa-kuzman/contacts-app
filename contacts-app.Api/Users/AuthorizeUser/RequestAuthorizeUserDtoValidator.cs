@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace contacts_app.Users.AuthorizeUser
+namespace contacts_app.Api.Users.AuthorizeUser
 {
     public class RequestAuthorizeUserDtoValidator : AbstractValidator<RequestAuthorizeUserDto>
     {

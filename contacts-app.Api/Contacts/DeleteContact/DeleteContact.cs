@@ -1,7 +1,7 @@
-﻿using contacts_app.Contacts.Model;
+﻿using contacts_app.Api.Contacts.Model;
 using Microsoft.AspNetCore.Mvc;
 
-namespace contacts_app.Contacts.DeleteContact
+namespace contacts_app.Api.Contacts.DeleteContact
 {
     public static class DeleteContact
     {

@@ -1,6 +1,6 @@
-﻿using contacts_app.Contacts.Model;
+﻿using contacts_app.Api.Contacts.Model;
 
-namespace contacts_app.Contacts.GetContacts
+namespace contacts_app.Api.Contacts.GetContacts
 {
     public static class GetContacts
     {

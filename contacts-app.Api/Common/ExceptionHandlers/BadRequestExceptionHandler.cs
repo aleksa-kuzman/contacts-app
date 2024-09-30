@@ -1,8 +1,8 @@
-﻿using contacts_app.Common.Exceptions;
+﻿using contacts_app.Api.Common.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace contacts_app.Common.ExceptionHandlers
+namespace contacts_app.Api.Common.ExceptionHandlers
 {
     public class BadRequestExceptionHandler : IExceptionHandler
     {

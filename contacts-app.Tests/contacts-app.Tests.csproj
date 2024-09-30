@@ -32,7 +32,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\contacts-app.Api\contacts-app.csproj" />
+		<ProjectReference Include="..\contacts-app.Api\contacts-app.Api.csproj" />
 	</ItemGroup>
 
   <ItemGroup>

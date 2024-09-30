@@ -1,4 +1,4 @@
-﻿namespace contacts_app.Common
+﻿namespace contacts_app.Api.Common
 {
     public class AppConfiguration
     {

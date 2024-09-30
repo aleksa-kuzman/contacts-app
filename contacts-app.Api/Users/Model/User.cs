@@ -1,6 +1,6 @@
-﻿using contacts_app.Contacts.Model;
+﻿using contacts_app.Api.Contacts.Model;
 
-namespace contacts_app.Users.Model
+namespace contacts_app.Api.Users.Model
 {
     public class User
     {

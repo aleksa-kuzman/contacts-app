@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>contacts_app</RootNamespace>
+    <RootNamespace>contacts_app.Api.Api</RootNamespace>
     <UserSecretsId>017943dc-ad3d-4e8d-8945-b1021dbb8dc6</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>

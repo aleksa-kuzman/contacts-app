@@ -1,7 +1,7 @@
-﻿using contacts_app.Common;
-using contacts_app.Contacts.AddContact.Dto;
-using contacts_app.Contacts.GetContacts.Dto;
-using contacts_app.Users.AuthorizeUser;
+﻿using contacts_app.Api.Common;
+using contacts_app.Api.Contacts.AddContact.Dto;
+using contacts_app.Api.Contacts.GetContacts.Dto;
+using contacts_app.Api.Users.AuthorizeUser;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;

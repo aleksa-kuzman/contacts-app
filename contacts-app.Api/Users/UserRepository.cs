@@ -1,7 +1,7 @@
-﻿using contacts_app.Common;
-using contacts_app.Users.Model;
+﻿using contacts_app.Api.Common;
+using contacts_app.Api.Users.Model;
 
-namespace contacts_app.Users
+namespace contacts_app.Api.Users
 {
     public class UserRepository
     {

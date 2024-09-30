@@ -1,8 +1,8 @@
-﻿using contacts_app.Contacts.AddContact.Dto;
-using contacts_app.Contacts.Model;
+﻿using contacts_app.Api.Contacts.AddContact.Dto;
+using contacts_app.Api.Contacts.Model;
 using Microsoft.AspNetCore.Mvc;
 
-namespace contacts_app.Contacts.AddContact
+namespace contacts_app.Api.Contacts.AddContact
 {
     public static class AddContact
     {

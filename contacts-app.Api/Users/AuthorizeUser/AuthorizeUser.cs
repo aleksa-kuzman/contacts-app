@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace contacts_app.Users.AuthorizeUser
+namespace contacts_app.Api.Users.AuthorizeUser
 {
     public static class AuthorizeUser
     {

@@ -1,4 +1,4 @@
-﻿namespace contacts_app.Common.Exceptions
+﻿namespace contacts_app.Api.Common.Exceptions
 {
     public class NotFoundException : Exception
     {

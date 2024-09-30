@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace contacts_app.Common
+namespace contacts_app.Api.Common
 {
     public class BcryptHasher<TUser> : IPasswordHasher<TUser> where TUser : class
     {

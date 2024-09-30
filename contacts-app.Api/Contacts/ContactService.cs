@@ -1,14 +1,14 @@
-﻿using contacts_app.Common;
-using contacts_app.Common.Exceptions;
-using contacts_app.Contacts.AddContact.Dto;
-using contacts_app.Contacts.DeleteContact.Dto;
-using contacts_app.Contacts.GetContacts.Dto;
-using contacts_app.Contacts.Model;
-using contacts_app.Contacts.UpdateContact.Dto;
+﻿using contacts_app.Api.Common;
+using contacts_app.Api.Common.Exceptions;
+using contacts_app.Api.Contacts.AddContact.Dto;
+using contacts_app.Api.Contacts.DeleteContact.Dto;
+using contacts_app.Api.Contacts.GetContacts.Dto;
+using contacts_app.Api.Contacts.Model;
+using contacts_app.Api.Contacts.UpdateContact.Dto;
 using FluentValidation;
 using Mapster;
 
-namespace contacts_app.Contacts
+namespace contacts_app.Api.Contacts
 {
     public class ContactService
     {

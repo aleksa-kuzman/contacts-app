@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace contacts_app.Contacts.Model
+namespace contacts_app.Api.Contacts.Model
 {
     public class ContactConfiguration : IEntityTypeConfiguration<Contact>
     {

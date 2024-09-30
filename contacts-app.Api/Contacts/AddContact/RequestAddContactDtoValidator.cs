@@ -1,7 +1,7 @@
-﻿using contacts_app.Contacts.AddContact.Dto;
+﻿using contacts_app.Api.Contacts.AddContact.Dto;
 using FluentValidation;
 
-namespace contacts_app.Contacts.AddContact
+namespace contacts_app.Api.Contacts.AddContact
 {
     public class RequestAddContactDtoValidator : AbstractValidator<RequestAddContactDto>
     {

@@ -1,7 +1,7 @@
-﻿using contacts_app.Contacts;
-using contacts_app.Users;
+﻿using contacts_app.Api.Contacts;
+using contacts_app.Api.Users;
 
-namespace contacts_app.Common
+namespace contacts_app.Api.Common
 {
     public class UnitOfWork
     {

@@ -1,7 +1,7 @@
-﻿using contacts_app.Contacts.UpdateContact.Dto;
+﻿using contacts_app.Api.Contacts.UpdateContact.Dto;
 using FluentValidation;
 
-namespace contacts_app.Contacts.UpdateContact
+namespace contacts_app.Api.Contacts.UpdateContact
 {
     public class RequestUpdateContactDtoValidator : AbstractValidator<RequestUpdateContactDto>
     {

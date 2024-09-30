@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using contacts_app.Common;
+using contacts_app.Api.Common;
 
 #nullable disable
 
-namespace contacts_app.Common.Migrations
+namespace contacts_app.Api.Common.Migrations
 {
     [DbContext(typeof(ContactsDbContext))]
     partial class ContactsDbContextModelSnapshot : ModelSnapshot
@@ -23,7 +23,7 @@ namespace contacts_app.Common.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("contacts_app.Contacts.Model.Contact", b =>
+            modelBuilder.Entity("contacts_app.Api.Contacts.Model.Contact", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -54,7 +54,7 @@ namespace contacts_app.Common.Migrations
                     b.ToTable("contacts", "contacts");
                 });
 
-            modelBuilder.Entity("contacts_app.Users.Model.User", b =>
+            modelBuilder.Entity("contacts_app.Api.Users.Model.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -87,9 +87,9 @@ namespace contacts_app.Common.Migrations
                     b.ToTable("users", "contacts");
                 });
 
-            modelBuilder.Entity("contacts_app.Contacts.Model.Contact", b =>
+            modelBuilder.Entity("contacts_app.Api.Contacts.Model.Contact", b =>
                 {
-                    b.HasOne("contacts_app.Users.Model.User", "User")
+                    b.HasOne("contacts_app.Api.Users.Model.User", "User")
                         .WithMany("Contacts")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -99,7 +99,7 @@ namespace contacts_app.Common.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("contacts_app.Users.Model.User", b =>
+            modelBuilder.Entity("contacts_app.Api.Users.Model.User", b =>
                 {
                     b.Navigation("Contacts");
                 });

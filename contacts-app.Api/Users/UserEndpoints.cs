@@ -1,6 +1,6 @@
-﻿using contacts_app.Users.AuthorizeUser;
+﻿using contacts_app.Api.Users.AuthorizeUser;
 
-namespace contacts_app.Users
+namespace contacts_app.Api.Users
 {
     public static class UserEndpoints
     {

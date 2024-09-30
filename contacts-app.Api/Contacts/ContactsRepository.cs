@@ -1,8 +1,8 @@
-﻿using contacts_app.Common;
-using contacts_app.Common.Exceptions;
-using contacts_app.Contacts.Model;
+﻿using contacts_app.Api.Common;
+using contacts_app.Api.Common.Exceptions;
+using contacts_app.Api.Contacts.Model;
 
-namespace contacts_app.Contacts
+namespace contacts_app.Api.Contacts
 {
     public class ContactsRepository
     {

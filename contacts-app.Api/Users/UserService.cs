@@ -1,11 +1,11 @@
-﻿using contacts_app.Common;
-using contacts_app.Common.Exceptions;
-using contacts_app.Users.AuthorizeUser;
-using contacts_app.Users.Model;
+﻿using contacts_app.Api.Common;
+using contacts_app.Api.Common.Exceptions;
+using contacts_app.Api.Users.AuthorizeUser;
+using contacts_app.Api.Users.Model;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 
-namespace contacts_app.Users
+namespace contacts_app.Api.Users
 {
     public class UserService
     {
