@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace contacts_app.Common
+namespace contacts_app.Common.ExceptionHandlers
 {
     public class GlobalExceptionHandler : IExceptionHandler
     {

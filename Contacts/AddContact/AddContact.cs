@@ -10,6 +10,7 @@ namespace contacts_app.Contacts.AddContact
             app.MapPost("api/contact", (
                 [FromBody] RequestAddContactDto dto,
                 ContactService contactService
+
                 ) =>
             {
                 var response = contactService.AddContact(dto);

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using contacts_app.Common;
@@ -11,9 +12,11 @@ using contacts_app.Common;
 namespace contacts_app.Common.Migrations
 {
     [DbContext(typeof(ContactsDbContext))]
-    partial class ContactsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240930093545_contacts-users-connection")]
+    partial class contactsusersconnection
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

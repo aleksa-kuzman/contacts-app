@@ -10,6 +10,10 @@ namespace contacts_app.Contacts.Model
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
                 .HasDefaultValueSql("(gen_random_uuid())");
+
+            builder.HasOne(m => m.User)
+                .WithMany(m => m.Contacts)
+                .HasForeignKey(m => m.UserId);
         }
     }
 }

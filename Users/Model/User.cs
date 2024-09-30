@@ -1,4 +1,6 @@
-﻿namespace contacts_app.Users.Model
+﻿using contacts_app.Contacts.Model;
+
+namespace contacts_app.Users.Model
 {
     public class User
     {
@@ -7,5 +9,6 @@
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
         public string Password { get; set; }
+        public IEnumerable<Contact> Contacts { get; set; }
     }
 }

@@ -1,4 +1,4 @@
 ﻿namespace contacts_app.Contacts.UpdateContact.Dto
 {
-    public record ResponseUpdateContactDto(string Name, string Phone);
+    public record ResponseUpdateContactDto(string Name, string PhoneNumber);
 }

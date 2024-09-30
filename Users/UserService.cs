@@ -1,4 +1,5 @@
 ﻿using contacts_app.Common;
+using contacts_app.Common.Exceptions;
 using contacts_app.Users.AuthorizeUser;
 using contacts_app.Users.Model;
 using FluentValidation;
@@ -37,19 +38,19 @@ namespace contacts_app.Users
 
             if (userToAuthenticate == null)
             {
-                throw new Exception();
+                throw new NotFoundException("Not found");
             }
 
             var hashingResult = _passwordHasher.VerifyHashedPassword(userToAuthenticate, userToAuthenticate.Password, dto.password);
 
             if (hashingResult != PasswordVerificationResult.Success)
             {
-                throw new UnauthorizedAccessException("Not authorized");
+                throw new ForbiddenException("Not authorized");
             }
 
             var token = _jwtHelper.GenerateJwtToken(userToAuthenticate.Id.ToString());
 
-            var userDto = new ResponseAuthorizeUserDto(userToAuthenticate.Email, token);
+            var userDto = new ResponseAuthorizeUserDto(userToAuthenticate.Email, token, userToAuthenticate.Id);
 
             return userDto;
         }

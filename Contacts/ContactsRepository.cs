@@ -1,4 +1,5 @@
 ﻿using contacts_app.Common;
+using contacts_app.Common.Exceptions;
 using contacts_app.Contacts.Model;
 
 namespace contacts_app.Contacts
@@ -12,9 +13,12 @@ namespace contacts_app.Contacts
             _context = context;
         }
 
-        public IList<Contact> GetAllContacts()
+        public IList<Contact> GetAllContactsByUserId(Guid UserId)
         {
-            var contacts = _context.Contacts.ToList();
+            var contacts = _context
+                .Contacts
+                .Where(m => m.UserId == UserId)
+                .ToList();
             return contacts;
         }
 
@@ -34,12 +38,21 @@ namespace contacts_app.Contacts
             return contact;
         }
 
+        internal Contact GetContactById(Guid id, Guid userId)
+        {
+            var contact = _context.Contacts
+                .Where(m => m.Id == id && m.UserId == userId)
+                .FirstOrDefault();
+
+            return contact;
+        }
+
         internal Contact DeleteContact(Guid id)
         {
             var contact = GetContactById(id);
             if (contact == null)
             {
-                throw new Exception("Exception");
+                throw new NotFoundException("Not found");
             }
 
             _context.Contacts.Remove(contact);

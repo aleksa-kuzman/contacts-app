@@ -1,4 +1,5 @@
 using contacts_app.Common;
+using contacts_app.Common.ExceptionHandlers;
 using contacts_app.Contacts;
 using contacts_app.Contacts.AddContact;
 using contacts_app.Contacts.AddContact.Dto;
@@ -26,7 +27,11 @@ builder.Services.AddTransient(typeof(UnitOfWork));
 builder.Services.AddTransient(typeof(UserService));
 builder.Services.AddTransient(typeof(ContactService));
 
-builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddExceptionHandler<NotFoundExceptionHandler>();
+builder.Services.AddExceptionHandler<BadRequestExceptionHandler>();
+builder.Services.AddExceptionHandler<ForbiddenExceptionHandler>();
+//builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+
 builder.Services.AddProblemDetails();
 
 builder.Services.AddScoped<IPasswordHasher<User>, BcryptHasher<User>>();
@@ -63,6 +68,8 @@ builder.Services.AddAuthorization(options =>
 ///Validators
 builder.Services.AddScoped<IValidator<RequestAuthorizeUserDto>, RequestAuthorizeUserDtoValidator>();
 builder.Services.AddScoped<IValidator<RequestAddContactDto>, RequestAddContactDtoValidator>();
+
+builder.Services.AddHttpContextAccessor();
 
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
@@ -101,10 +108,10 @@ if (app.Environment.IsDevelopment() || app.Environment.EnvironmentName == "Local
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseExceptionHandler();
 
 app.MapUsers();
 app.MapContacts();
-app.UseExceptionHandler();
 //app.UseHttpsRedirection();
 
 app.Run();

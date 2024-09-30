@@ -1,4 +1,5 @@
 ﻿using contacts_app.Common;
+using contacts_app.Common.Exceptions;
 using contacts_app.Contacts.AddContact.Dto;
 using contacts_app.Contacts.DeleteContact.Dto;
 using contacts_app.Contacts.GetContacts.Dto;
@@ -13,11 +14,28 @@ namespace contacts_app.Contacts
     {
         private readonly UnitOfWork _uow;
         private IValidator<RequestAddContactDto> _validator;
+        private IHttpContextAccessor _contextAccessor;
 
-        public ContactService(UnitOfWork uow, IValidator<RequestAddContactDto> validator)
+        public ContactService(
+            UnitOfWork uow,
+            IValidator<RequestAddContactDto> validator,
+            IHttpContextAccessor contextAccessor
+           )
         {
             _uow = uow;
             _validator = validator;
+            _contextAccessor = contextAccessor;
+        }
+
+        private Guid GetUserId()
+        {
+            var userIdString = _contextAccessor.HttpContext!.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (userIdString == null)
+            {
+                throw new Exception("Internal server error");
+            }
+
+            return Guid.Parse(userIdString);
         }
 
         /// <summary>
@@ -26,7 +44,8 @@ namespace contacts_app.Contacts
         /// <returns></returns>
         public IList<GetContactsDto> GetAllContacts()
         {
-            var contactsFromDb = _uow.ContactsRepository.GetAllContacts();
+            var userId = GetUserId();
+            var contactsFromDb = _uow.ContactsRepository.GetAllContactsByUserId(userId);
             var contactsRes = contactsFromDb.Adapt<IList<GetContactsDto>>();
 
             return contactsRes;
@@ -43,10 +62,12 @@ namespace contacts_app.Contacts
 
             if (!validationResult.IsValid)
             {
-                throw new BadHttpRequestException("Invalid payload");
+                throw new BadRequestException("Invalid payload", validationResult.Errors);
             }
 
             var contact = contactDto.Adapt<Contact>();
+
+            contact.UserId = GetUserId();
             var insertedContact = _uow.ContactsRepository.AddContact(contact);
 
             _uow.Save();
@@ -56,10 +77,12 @@ namespace contacts_app.Contacts
 
         public ResponseUpdateContactDto UpdateContact(RequestUpdateContactDto dto, Guid id)
         {
-            var contact = _uow.ContactsRepository.GetContactById(id);
+            var userId = GetUserId();
+
+            var contact = _uow.ContactsRepository.GetContactById(id, userId);
             if (contact == null)
             {
-                throw new Exception();
+                throw new NotFoundException("Not Found");
             }
             contact.PhoneNumber = dto.PhoneNumber;
             contact.Name = dto.Name;
