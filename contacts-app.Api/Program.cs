@@ -57,6 +57,17 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("test", options =>
+    {
+        options
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddAuthorization(options =>
 {
     options.DefaultPolicy = new AuthorizationPolicyBuilder()
@@ -81,6 +92,8 @@ options.UseNpgsql(configuration.GetConnectionString("Connection"))
 .UseSnakeCaseNamingConvention());
 
 var app = builder.Build();
+
+app.UseCors("test");
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -112,6 +125,7 @@ app.UseExceptionHandler();
 
 app.MapUsers();
 app.MapContacts();
+
 //app.UseHttpsRedirection();
 
 app.Run();
